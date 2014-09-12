@@ -23,7 +23,7 @@
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 // THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
@@ -85,7 +85,6 @@ namespace PdfSharp.Drawing
       {
         if (this.immutable)
           throw new ArgumentException(PSSR.CannotChangeImmutableObject("XSolidBrush"));
-        this.color = value;
 #if GDI
         this.gdiDirty = this.gdiDirty || this.color != value;
 #endif
@@ -95,6 +94,7 @@ namespace PdfSharp.Drawing
 #if GDI && WPF
         this.gdiDirty = this.wpfDirty = true;
 #endif
+        this.color = value;
       }
     }
     internal XColor color;
