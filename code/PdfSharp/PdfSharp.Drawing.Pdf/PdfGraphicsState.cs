@@ -23,7 +23,7 @@
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 // THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
@@ -52,10 +52,10 @@ namespace PdfSharp.Drawing.Pdf
   // of the product of all modifications. PDFlib uses this 'trick', but it does not work. Because of
   // rounding errors everything on the PDF page looks sloping after some resets. Saving and restoring
   // the graphics state is the only possible way to reset the CTM, but because the PDF restore operator
-  // 'Q' resets not only the CTM but all other graphics state values, we have to implement our own 
-  // graphics state management. This is apparently the only safe way to give the XGrahics users the 
+  // 'Q' resets not only the CTM but all other graphics state values, we have to implement our own
+  // graphics state management. This is apparently the only safe way to give the XGrahics users the
   // illusion that they can arbitrarily set the transformation matrix.
-  // 
+  //
   // The current implementation is just a draft. Save/Restore works only once and clipping is not
   // correctly restored in some cases.
 
@@ -248,7 +248,7 @@ namespace PdfSharp.Drawing.Pdf
 
         if (colorMode != PdfColorMode.Cmyk)
         {
-          if (this.realizedFillColor.Rgb != color.Rgb)
+          if (this.realizedFillColor.Argb != color.Argb)
           {
             this.renderer.Append(PdfEncoders.ToString(color, PdfColorMode.Rgb));
             this.renderer.Append(" rg\n");
