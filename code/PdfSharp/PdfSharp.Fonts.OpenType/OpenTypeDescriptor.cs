@@ -23,7 +23,7 @@
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 // THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
@@ -229,7 +229,7 @@ namespace PdfSharp.Fonts.OpenType
         int glyphIndex;
         if (symbol)
         {
-          glyphIndex = idx + (this.fontData.os2.usFirstCharIndex & 0xFF00);
+          glyphIndex = idx | (this.fontData.os2.usFirstCharIndex & 0xFF00);
           glyphIndex = CharCodeToGlyphIndex((char)glyphIndex);
         }
         else
@@ -299,7 +299,7 @@ namespace PdfSharp.Fonts.OpenType
 
         if (cmap.glyphIdArray[idx] == 0)
           return 0;
-        
+
         return (cmap.glyphIdArray[idx] + cmap.idDelta[seg]) & 0xFFFF;
       }
       catch

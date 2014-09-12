@@ -23,7 +23,7 @@
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 // THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
@@ -520,7 +520,7 @@ namespace PdfSharp.Drawing.Pdf
           int glyphID = 0;
           if (descriptor.fontData.cmap.symbol)
           {
-            glyphID = (int)ch + (descriptor.fontData.os2.usFirstCharIndex & 0xFF00);
+            glyphID = (int)ch | (descriptor.fontData.os2.usFirstCharIndex & 0xFF00);
             glyphID = descriptor.CharCodeToGlyphIndex((char)glyphID);
           }
           else
@@ -1098,7 +1098,7 @@ namespace PdfSharp.Drawing.Pdf
       //AppendPartialArc(currentPoint, seg.Point, seg.RotationAngle, seg.Size, seg.IsLargeArc, seg.SweepDirection, PathStart.Ignore1st);
 
       int pieces;
-      PointCollection points = GeometryHelper.ArcToBezier(point1.X, point1.Y, size.Width, size.Height, rotationAngle, isLargeArc, 
+      PointCollection points = GeometryHelper.ArcToBezier(point1.X, point1.Y, size.Width, size.Height, rotationAngle, isLargeArc,
         sweepDirection == SweepDirection.Clockwise, point2.X, point2.Y, out pieces);
 
       int count = points.Count;
@@ -1178,8 +1178,8 @@ namespace PdfSharp.Drawing.Pdf
 
           case PathPointTypeBezier:
             Debug.Assert(idx + 2 < count);
-            //PDF_curveto(pdf, points[idx].X, points[idx].Y, 
-            //                 points[idx + 1].X, points[idx + 1].Y, 
+            //PDF_curveto(pdf, points[idx].X, points[idx].Y,
+            //                 points[idx + 1].X, points[idx + 1].Y,
             //                 points[idx + 2].X, points[idx + 2].Y);
             AppendFormat("{0:0.####} {1:0.####} {2:0.####} {3:0.####} {4:0.####} {5:0.####} c\n", points[idx].X, points[idx].Y,
               points[++idx].X, points[idx].Y, points[++idx].X, points[idx].Y);
